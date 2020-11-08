@@ -12,8 +12,8 @@ import matplotlib
 # Algo des differents
 #
 
-#fopen = (line for line in open("/home/nexxis/Documents/Python/rockyou.txt", "r").readlines())
-fopen = (line for line in open("/home/nexxis/Documents/Python/toooo.txt", "r").readlines())
+fopen = (line for line in open('~/Documents/Python/rockyou.txt', 'r', encoding='utf8', errors='replace').readlines())
+#fopen = (line for line in open('~/Documents/Python/toooo.txt', 'r', encoding='utf8', errors='replace').readlines())
 
 count_total_lines, count_char, count_total_char, count_total_alpha, count_total_upper, count_total_lower, count_total_num, count_total_symb = 0, 0, 0, 0, 0, 0, 0, 0
 
@@ -80,6 +80,14 @@ print("Character Frequency")
 for letter in alpha_list:
   print(letter,":",str(round(list_count_letter.count(letter) / count_total_alpha * 100, 1)), "%")
 print("\n")
+
+print("--------------------------------------------------")
+print("File Properties:")
+print("File path:", filepath)
+print("Number of lines:", count_total_lines)
+print("\n")
+
+
 """
 
 
