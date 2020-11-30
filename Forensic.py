@@ -1,7 +1,6 @@
 
 #! /usr/bin/python3
 
-#from tkinter import * 
 import re
 import os
 import string
@@ -9,12 +8,17 @@ import matplotlib
 from functools import partial
 
 import tkinter
+from tkinter import *
+from tkinter.ttk import *
 
 from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg, NavigationToolbar2Tk)
 from matplotlib.backend_bases import key_press_handler
 from matplotlib.figure import Figure
 
 import numpy as np
+
+#from PIL import Image, ImageTk
+from PIL import Image
 
 #
 # Algo des differents
@@ -287,6 +291,7 @@ def nine():
     # Cette function est utilise pour effectue le pourcentage des resultats d'un calcule
     #return "nombre"
     root = tkinter.Tk()
+    root.geometry('300x800')
  #   scrollbar = Scrollbar(root)
 #    scrollbar.pack(side = RIGHT, fill = Y)
 
@@ -295,9 +300,15 @@ def nine():
     for letter in alpha_list:
     	#print(letter,":",str(round(list_count_letter.count(letter) / count_total_alpha * 100, 1)), "%")
     	#labelBonjour['text']= letter,":",str(round(list_count_letter.count(letter) / count_total_alpha * 100, 1)), "%"
-        print(letter,":",str(round(list_count_letter.count(letter) / count_total_alpha * 100, 1)), "%")
+        # Affiche dams le Terminale le pourcentage de chaque caracteres
+  #      print(letter,":",str(round(list_count_letter.count(letter) / count_total_alpha * 100, 1)), "%")
+        #print(len(letter,":",str(round(list_count_letter.count(letter) / count_total_alpha * 100, 1)), "%"))
         #text = []
-        i = letter,":",str(round(list_count_letter.count(letter) / count_total_alpha * 100, 1)), "%"
+   #     i = letter,":",str(round(list_count_letter.count(letter) / count_total_alpha * 100, 1)), "%"
+  #      print(i)
+#        str1 = ''.join(str(e) for e in i)
+ #       print(str1)
+        #i = (letter + ":" + str(round(list_count_letter.count(letter) / count_total_alpha * 100, 1)) + "%")
         #i += text
 
 #        myList.insert(END, 'caracteres: ' + i)
@@ -315,9 +326,11 @@ def nine():
         #print(i)
 
 
-        for index,item in enumerate(i, 4):
-#            i.replace(" ", "_")
-            tkinter.Label(root,text=f'caracteres: {item}').pack(pady = index+0.1)
+        for index,item in enumerate(letter):
+            #i.replace(" ", "_")
+            #for index in range(0,26):
+            #tkinter.Label(root,text=f'caracteres: {item}').pack(pady = index+0)
+            tkinter.Label(root,text="Caractere : "+letter+" = "+str(round(list_count_letter.count(letter) / count_total_alpha * 100, 1))+" %",font=('Ariel',16)).pack(pady = index+0)
 
         #labelRoot = Label(root,text=(letter,":",str(round(list_count_letter.count(letter) / count_total_alpha * 100, 1)), "%"),bg='white',font=('Arial',12))
         #labelRoot = Label(root,text=("\n"))
@@ -343,6 +356,11 @@ def nine():
     #label.grid(row=2, column=0)
     root.title('Tableau de caracteres')
     root.mainloop
+
+def _quit():
+    mafenetre.quit()     # stops mainloop
+    mafenetre.destroy()  # this is necessary on Windows to prevent
+                    # Fatal Python Error: PyEval_RestoreThread: NULL tstate
 
 
 #
@@ -380,8 +398,29 @@ boutonEight.place(x=1100,y=650)
 boutonNine = tkinter.Button(mafenetre,text='list Caracteres',activeforeground="red",command=nine)
 boutonNine.place(x=1250,y=650)
 
-boutonTen = tkinter.Button(mafenetre, text="Quit", activebackground="red", command=mafenetre.quit)
-boutonTen.place(x=1400,y=650)
+#load = Image.open("/home/nexxis/Documents/Python/ForensicPythonProjectRockyou/icon_poweroff.jpg")
+#photo = ImageTk.PhotoImage(load)
+#photo = Tk.PhotoImage(file = r"/home/nexxis/Documents/Python/ForensicPythonProjectRockyou/icon_poweroff.jpg")
+#root.iconphoto(False, tk.PhotoImage(file='/path/to/ico/icon.png'))
+#mafenetre.iconphoto(False, tkinter.PhotoImage(file='/home/nexxis/Documents/Python/ForensicPythonProjectRockyou/icon_poweroff.jpg'))
+#photo = tkinter.PhotoImage(file='/home/nexxis/Documents/Python/ForensicPythonProjectRockyou/icon_poweroff.jpg')
+#photo = tkinter.PhotoImage(file='icon_poweroff.jpg')
+#photo = ImageTk.PhotoImage(Image.open('icon_poweroff.jpg'))
+
+photo = Image.open("icon_poweroff.jpg")
+
+#boutonTen = tkinter.Button(mafenetre, text="Quit", activebackground="red", command=mafenetre.quit)
+#boutonTen.place(x=1400,y=650)
+
+#buttonTen = tkinter.Button(mafenetre, image=photo, text="Quit", command=_quit)
+buttonTen = tkinter.Button(mafenetre, text="Quit", activebackground="red", command=_quit)
+
+#buttonTen = tkinter.Button(master=mafenetre, image=photo, text="Quit", command=mafenetre.quit)
+#buttonTen = tkinter.Button(master=mafenetre,text="Quit",command=_quit)
+#buttonTen.pack(side=tkinter.BOTTOM)
+#photo = mafenetre.iconphoto(False, tk.PhotoImage(file='/path/to/ico/icon.png'))
+buttonTen.place(x=1740,y=10)
+
 mafenetre.mainloop()
 
 """
