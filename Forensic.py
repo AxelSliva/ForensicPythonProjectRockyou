@@ -287,7 +287,7 @@ def eight():
     labelMessage['text']= i
 
 def nine():
-    Delete_Text()
+    #Delete_Text()
     # Cette function est utilise pour effectue le pourcentage des resultats d'un calcule
     #return "nombre"
     root = tkinter.Tk()
