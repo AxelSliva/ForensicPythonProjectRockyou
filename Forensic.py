@@ -4,13 +4,19 @@
 import re
 import os
 import string
-import matplotlib
+import random
 from functools import partial
+
+import time
+import timeit
+import tqdm
 
 import tkinter
 from tkinter import *
 from tkinter.ttk import *
 
+import matplotlib
+import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg, NavigationToolbar2Tk)
 from matplotlib.backend_bases import key_press_handler
 from matplotlib.figure import Figure
@@ -20,6 +26,7 @@ import numpy as np
 #from PIL import Image, ImageTk
 from PIL import Image
 
+#########################################################################################################################################################################
 #
 # Algo des differents
 #
@@ -35,7 +42,7 @@ list_count_char = list()
 list_count_letter = list()
 
 ### Main ###
-for line in fopen:
+for line in tqdm.tqdm(fopen):
   count_total_lines += 1
   count_char = len(line)
   list_count_char.append(count_char)
@@ -72,6 +79,7 @@ other_stat = 100 - (upper_stat + lower_stat + num_stat + symb_stat)
 
 fopen.close()
 
+#########################################################################################################################################################################
 
 """
 print("\n")
@@ -290,6 +298,14 @@ def nine():
     #Delete_Text()
     # Cette function est utilise pour effectue le pourcentage des resultats d'un calcule
     #return "nombre"
+    #x = [random.randint(0,150) for i in range(1000)]
+    #n, bins, patches = plt.hist(x, 50, normed=1, facecolor='b', alpha=0.5)
+    #plt.xlabel('Mise')
+    #plt.ylabel(u'Probabilité')
+    #plt.axis([0, 150, 0, 0.02])
+    #plt.grid(True)
+    #plt.show()
+    #labelMessage['text']=" "
     root = tkinter.Tk()
     root.geometry('300x800')
  #   scrollbar = Scrollbar(root)
@@ -356,6 +372,14 @@ def nine():
     #label.grid(row=2, column=0)
     root.title('Tableau de caracteres')
     root.mainloop
+    x = [random.randint(0,26) for i in range(1000)]
+    n, bins, patches = plt.hist(x, 100, facecolor='b', alpha=0.5)
+    plt.xlabel('Mise')
+    plt.ylabel(u'Probabilité')
+    plt.axis([0, 26, 0, 100])
+    plt.grid(True)
+    plt.show()
+    #labelMessage['text']=" "
 
 def _quit():
     mafenetre.quit()     # stops mainloop
@@ -367,6 +391,8 @@ def _quit():
 # La fenetre
 #
 if __name__ == '__main__':
+    #time.sleep(600)
+    time.sleep(10)
     mafenetre = tkinter.Tk()
 mafenetre.title('Project Python')
 mafenetre.geometry('1800x720')
@@ -380,23 +406,23 @@ zeroText()
 # Les differents button qui donne des resultats
 #
 boutonOne = tkinter.Button(mafenetre,text='Smallest word',activeforeground="red",command=one)
-boutonOne.place(x=50,y=650)
+boutonOne.place(x=150,y=650)
 boutonTwo = tkinter.Button(mafenetre,text='Longest word',activeforeground="red",command=two)
-boutonTwo.place(x=200,y=650)
+boutonTwo.place(x=300,y=650)
 boutonThree = tkinter.Button(mafenetre,text='Average word length',activeforeground="red",command=three)
-boutonThree.place(x=350,y=650)
+boutonThree.place(x=440,y=650)
 boutonFour = tkinter.Button(mafenetre,text='Uppercase only',activeforeground="red",command=four)
-boutonFour.place(x=500,y=650)
+boutonFour.place(x=630,y=650)
 boutonFive = tkinter.Button(mafenetre,text='Lowercase only',activeforeground="red",command=five)
-boutonFive.place(x=650,y=650)
+boutonFive.place(x=785,y=650)
 boutonSix = tkinter.Button(mafenetre,text='Numbers only',activeforeground="red",command=six)
-boutonSix.place(x=800,y=650)
+boutonSix.place(x=940,y=650)
 boutonSeven = tkinter.Button(mafenetre,text='Symbols only',activeforeground="red",command=seven)
-boutonSeven.place(x=950,y=650)
+boutonSeven.place(x=1085,y=650)
 boutonEight = tkinter.Button(mafenetre,text='Multiple character sets',activeforeground="red",command=eight)
-boutonEight.place(x=1100,y=650)
+boutonEight.place(x=1230,y=650)
 boutonNine = tkinter.Button(mafenetre,text='list Caracteres',activeforeground="red",command=nine)
-boutonNine.place(x=1250,y=650)
+boutonNine.place(x=1430,y=650)
 
 #load = Image.open("/home/nexxis/Documents/Python/ForensicPythonProjectRockyou/icon_poweroff.jpg")
 #photo = ImageTk.PhotoImage(load)
