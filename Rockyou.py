@@ -63,7 +63,7 @@ def Algo_Statistique():
 Example : /home/test/rockyou.txt OR C:\\rockyou.txt
 >>> """)
 
-    #fopen = (line for line in open('/home/nexxis/Documents/Python/rockyou.txt', 'r', encoding='utf-8', errors='replace').readlines())
+    #fopen = (line for line in open('C:\\rockyou.txt', 'r', encoding='utf-8', errors='replace').readlines())
     fopen = (line for line in open(Path, 'r', encoding='utf-8', errors='replace').readlines())
 
     count_total_lines, count_char, count_total_char, count_total_alpha, count_total_upper, count_total_lower, count_total_num, count_total_symb = 0, 0, 0, 0, 0, 0, 0, 0
@@ -169,19 +169,21 @@ def Delete_Text():
 def zeroTitre():
     global labelBonjour
     Titre = """Sujet 3 : Analyse statistique d’un fichier"""
+    #labelBonjour['text'] = Titre
     labelBonjour = tkinter.Label(mafenetre,text=Titre,font=('Arial',48))
-    labelBonjour.pack(pady=10)
+    labelBonjour.pack(ipady=10)
 
 def zeroText():
     global labelDescription
     Text = """
-On souhaite écrire un programme qui va ouvrir un fichier texte (rockyou.txt) contenant
+L'objectif de ce programme est d'ouvrir un fichier texte (rockyou.txt) contenant
 des mots de passe à raison d’un mot de passe par ligne, et produire des statistiques sur
 l’usage des caractères (majuscules, minuscules, numériques, symboles), la longueur
 minimale, maximale et moyenne, la fréquence d’usage des lettres dans ce fichier.
     """
+    #labelDescription['text'] = Text
     labelDescription = tkinter.Label(mafenetre,text=Text,font=('Arial',28))
-    labelDescription.pack(pady=10)
+    labelDescription.pack(ipady=10)
 
 def one():
     i = " Smallest word : ", min(list_count_char), "character(s)"
@@ -233,25 +235,25 @@ def ten():
     root1.geometry('300x800')
     for letter in alpha_list:
         for index,item in enumerate(letter):
-            tkinter.Label(root1,text="Caractere : "+letter+" = "+str(round(list_count_letter.count(letter) / count_total_alpha * 100, 1))+" %",font=('Ariel',16)).pack(pady = index+0)
+            tkinter.Label(root1,text="character : "+letter+" = "+str(round(list_count_letter.count(letter) / count_total_alpha * 100, 1))+" %",font=('Ariel',16)).pack(pady = index+0)
 
-    root1.title('Tableau de Caracteres')
+    root1.title('Character table')
     root1.mainloop
     root2 = tkinter.Tk()
     root2.geometry('300x310')
     for chiffre in digits_list:
         for index,item in enumerate(chiffre):
-            tkinter.Label(root2,text="Caractere : "+chiffre+" = "+ str(round(list_count_digits.count(chiffre) / count_total_num * 100, 1))+" %",font=('Ariel',16)).pack(pady = index+0)
+            tkinter.Label(root2,text="character : "+chiffre+" = "+ str(round(list_count_digits.count(chiffre) / count_total_num * 100, 1))+" %",font=('Ariel',16)).pack(pady = index+0)
 
-    root2.title('Tableau de Chiffres')
+    root2.title('Table of numeric characters')
     root2.mainloop
     root3 = tkinter.Tk()
     root3.geometry('250x750')
     for symbols in symbols_list:
         for index,item in enumerate(symbols):
-            tkinter.Label(root3,text="Caractere : "+symbols+" = "+str(round(list_count_symbol.count(symbols) / count_total_symb * 100, 1))+" %",font=('Ariel',12)).pack(pady = index+0)
+            tkinter.Label(root3,text="character : "+symbols+" = "+str(round(list_count_symbol.count(symbols) / count_total_symb * 100, 1))+" %",font=('Ariel',12)).pack(pady = index+0)
 
-    root3.title('Tableau de Symbols')
+    root3.title('Table of symbols')
     root3.mainloop
 
 def G1():
@@ -266,7 +268,7 @@ def G1():
     name = ['Upper', 'Lower', 'Number', 'Symbol']
     data = [Upper, Lower, Number, Symbol]
     explode=(0.05, 0.05, 0.05, 0.05)
-    plt.suptitle('pourcentage de chaque type de caracteres')
+    plt.suptitle('percentage of each type of characters')
     plt.pie(data, explode=explode, labels=name, autopct='%1.1f%%', startangle=90, shadow=True)
     plt.axis('equal')
     plt.show()
@@ -302,8 +304,12 @@ if __name__ == '__main__':
     #time.sleep(600)
     time.sleep(2)
     mafenetre = tkinter.Tk()
-    mafenetre.title('Project Python')
+    mafenetre.title('Python Project')
     mafenetre.geometry('1550x650')
+    #labelBonjour = tkinter.Label(mafenetre,font=('Arial',48))
+    #labelBonjour.pack(ipady=10)
+    #labelDescription = tkinter.Label(mafenetre,font=('Arial',28))
+    #labelDescription.pack(ipady=10)
     labelMessage = tkinter.Label(mafenetre,font=('Ariel',42))
     labelMessage.place(x=100,y=100)
     labelMessage11 = tkinter.Label(mafenetre,font=('Ariel',42))
@@ -329,16 +335,16 @@ if __name__ == '__main__':
 # Les differents button qui donne des resultats
 #
     boutonWord = tkinter.Button(mafenetre,text='Words',activeforeground="red",command=words)
-    boutonWord.place(x=200,y=600)
-    boutonCaracters = tkinter.Button(mafenetre,text='Caracters',activeforeground="red",command=Caracters)
-    boutonCaracters.place(x=280,y=600)
-    boutonNine = tkinter.Button(mafenetre,text='Multiple character sets',activeforeground="red",command=nine)
-    boutonNine.place(x=380,y=600)
-    boutonTen = tkinter.Button(mafenetre,text='lists',activeforeground="red",command=ten)
-    boutonTen.place(x=570,y=600)
+    boutonWord.place(relx = 0.15, rely = 0.9, anchor = CENTER)
+    boutonCaracters = tkinter.Button(mafenetre,text='characters',activeforeground="red",command=Caracters)
+    boutonCaracters.place(relx = 0.30, rely = 0.9, anchor = CENTER)
+    boutonNine = tkinter.Button(mafenetre,text='specific characters',activeforeground="red",command=nine)
+    boutonNine.place(relx = 0.50, rely = 0.9, anchor = CENTER)
+    boutonTen = tkinter.Button(mafenetre,text='character frequency',activeforeground="red",command=ten)
+    boutonTen.place(relx = 0.70, rely = 0.9, anchor = CENTER)
     photo = Image.open("icon_poweroff.jpg")
-    buttonQuit = tkinter.Button(mafenetre, text="Quit", activebackground="red", command=quit)
-    buttonQuit.place(x=635, y=600)
+    boutonQuit = tkinter.Button(mafenetre, text="Quit", activebackground="red", command=quit)
+    boutonQuit.place(relx = 0.85, rely = 0.9, anchor = CENTER)
 
     mafenetre.mainloop()
 
