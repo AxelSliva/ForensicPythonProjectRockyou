@@ -32,6 +32,8 @@ from PIL import Image
 #
 
 def Algo_Statistique():
+    
+    # Permet de rendre c'est variable lisible par toutes les fonctions du script
     global count_total_lines
     global count_char
     global count_total_char
@@ -60,6 +62,7 @@ def Algo_Statistique():
     global symb_stat
     global other_stat
 
+    # Demande le chemin du fichier en ligne de commande
     Path = input("""Rockyou.txt Path : 
 Example : /home/test/rockyou.txt OR C:\\rockyou.txt
 >>> """)
