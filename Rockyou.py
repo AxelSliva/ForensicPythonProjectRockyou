@@ -1,6 +1,7 @@
 
 #! /usr/bin/python3.8
 
+# Les differentes library utilise
 import re
 import os
 import string
@@ -27,7 +28,7 @@ from PIL import Image
 
 #########################################################################################################################################################################
 #
-# Algo Statistique
+# Algo qui effectue des calculent sur le fichier Rockyou.txt et en extrait des statistiques
 #
 
 def Algo_Statistique():
@@ -122,8 +123,8 @@ Example : /home/test/rockyou.txt OR C:\\rockyou.txt
 
 #########################################################################################################################################################################
 
-"""
 # La partis affichage des resultat en ligne de commande
+"""
 
 print("\n")
 print("--------------------------------------------------")
@@ -151,6 +152,7 @@ print("\n")
 
 """
 
+# Remplace de les resultats deja afficher par des espace pour un soucis de lisibilité
 def blankText():
     labelMessage['text']=" "
     labelMessage11['text'] = " "
@@ -162,10 +164,12 @@ def blankText():
     labelMessage23['text'] = " "
     labelMessage24['text'] = " "
 
+# Supprime le titre et la description de l'exercice pour mieux lire les resultats qui sa ficheront apres
 def Delete_Text():
     labelBonjour.pack_forget()
     labelDescription.pack_forget()
 
+# De la fonction ci-dessous a la fonctions ten(). Sert l'affichage des differentes statistiques genere avec l'algorithme
 def zeroTitre():
     global labelBonjour
     Titre = """Sujet 3 : Analyse statistique d’un fichier"""
@@ -223,6 +227,7 @@ def nine():
     i = " Multiple character sets : ", str(round(other_stat, 2)), "%"
     labelMessage['text']= i
 
+# Fonctions qui affiche les repetitions de chaque caracteres analyse dans le Rockyou.txt
 def ten():
     Delete_Text()
     blankText()
@@ -256,6 +261,7 @@ def ten():
     root3.title('Table of symbols')
     root3.mainloop
 
+# Fonction qui gere le graph des caracteres
 def G1():
     #Upper = "Uppercase only:", str(round(upper_stat, 2)), "%"
     #Lower = "Lowercase only:", str(round(lower_stat, 2)), "%"
@@ -273,6 +279,7 @@ def G1():
     plt.axis('equal')
     plt.show()
 
+# fonction appele pour appeler les fonctions qui affiche les statistiques des mots de Rockyou.txt
 def words():
     Delete_Text()
     blankText()
@@ -281,6 +288,7 @@ def words():
     three()
     four()
 
+# fonction appele pour appeler les fonctions qui affiche les statistiques des caracteres de Rockyou.txt
 def Caracters():
     Delete_Text()
     blankText()
@@ -297,19 +305,21 @@ def quit():
 
 
 #
-# La fenetre
+# La parti du script qui se lance au demarrage
 #
 if __name__ == '__main__':
+    
+    # la fonction qui effectue des statistique sur le fichier text
     Algo_Statistique()
-    #time.sleep(600)
+    
+    # Attends 2 secondes le entre la fin des calcule et l'affichage des resultats
     time.sleep(2)
-    mafenetre = tkinter.Tk()
-    mafenetre.title('Python Project')
-    mafenetre.geometry('1550x650')
-    #labelBonjour = tkinter.Label(mafenetre,font=('Arial',48))
-    #labelBonjour.pack(ipady=10)
-    #labelDescription = tkinter.Label(mafenetre,font=('Arial',28))
-    #labelDescription.pack(ipady=10)
+    
+    mafenetre = tkinter.Tk()                                    # Le nom de la fennetre
+    mafenetre.title('Python Project')                           # Le titre de la fenetre
+    mafenetre.geometry('1550x650')                              # La taille de la fenetre
+    
+    # Les diferents label qui contienne un message
     labelMessage = tkinter.Label(mafenetre,font=('Ariel',42))
     labelMessage.place(x=100,y=100)
     labelMessage11 = tkinter.Label(mafenetre,font=('Ariel',42))
@@ -331,20 +341,33 @@ if __name__ == '__main__':
     zeroTitre()
     zeroText()
 
-#
-# Les differents button qui donne des resultats
-#
+    #
+    # Les differents bouton qui donne des resultats
+    #
+    
+    # Affiche les statistiques sur les mots
     boutonWord = tkinter.Button(mafenetre,text='Words',activeforeground="red",command=words)
     boutonWord.place(relx = 0.15, rely = 0.9, anchor = CENTER)
+    
+    # Affiche les statistiques sur les caracteres
     boutonCaracters = tkinter.Button(mafenetre,text='characters',activeforeground="red",command=Caracters)
     boutonCaracters.place(relx = 0.30, rely = 0.9, anchor = CENTER)
+    
+    # Affiche les statistique sur ce qui est ni Majuscule ni Minuscule ni Numerique ni Symbol
     boutonNine = tkinter.Button(mafenetre,text='specific characters',activeforeground="red",command=nine)
     boutonNine.place(relx = 0.50, rely = 0.9, anchor = CENTER)
+    
+    # Affiche les listes avec chaqu'un son pourcentage repetition de chaque caracteres
     boutonTen = tkinter.Button(mafenetre,text='character frequency',activeforeground="red",command=ten)
     boutonTen.place(relx = 0.70, rely = 0.9, anchor = CENTER)
+    
+    # Affiche le bouton pour quit les fenetres
     photo = Image.open("icon_poweroff.jpg")
     boutonQuit = tkinter.Button(mafenetre, text="Quit", activebackground="red", command=quit)
     boutonQuit.place(relx = 0.85, rely = 0.9, anchor = CENTER)
 
+    #
+    # La fenetre s'affiche avec les resultats
+    #
     mafenetre.mainloop()
 
