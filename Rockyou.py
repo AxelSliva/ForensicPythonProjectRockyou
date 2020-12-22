@@ -369,3 +369,5 @@ if __name__ == '__main__':
     # La fenêtre d’accueil.
     mafenetre.mainloop()
 
+# THE END
+
