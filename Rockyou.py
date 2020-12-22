@@ -28,12 +28,12 @@ from PIL import Image
 
 #########################################################################################################################################################################
 #
-# Algo qui effectue des calcules sur le fichier Rockyou.txt et permet d’obtenir les statistiques.  
+# Algo qui effectue des calcules sur le fichier Rockyou.txt et permet d’obtenir des statistiques.  
 #
 
 def Algo_Statistique():
 
-    # Permet de rendre les variables lisibles par toutes les fonctions du script
+    # Permet de rendre les variables lisibles par toutes les fonctions du script.
     global count_total_lines
     global count_char
     global count_total_char
@@ -63,7 +63,7 @@ def Algo_Statistique():
     global other_stat
 
     # Emplacement du script sur la machine et demande le chemin du fichier en ligne de commande.
-    Path = input("""Rockyou.txt Path : 
+    Path = input("""Rockyou.txt Path :
 Example : /home/test/rockyou.txt OR C:\\rockyou.txt
 >>> """)
 
@@ -87,19 +87,19 @@ Example : /home/test/rockyou.txt OR C:\\rockyou.txt
         count_char = len(line)
         list_count_char.append(count_char)
         count_total_char += count_char
-  
+
         count_alpha, count_upper, count_lower, count_numeric, count_symbol, count_spe = 0, 0, 0, 0, 0, 0
 
         for character in line:
             if(character.isalpha()):
-                list_count_letter.append(character.lower()) 
+                list_count_letter.append(character.lower())
                 count_alpha = count_alpha + 1
                 count_total_alpha = count_total_alpha + 1
 
                 if(character.isupper()):
                     count_upper = count_upper + 1
                     count_total_upper = count_total_upper + 1
-            
+
                 else:
                     count_lower = count_lower + 1
                     count_total_lower = count_total_lower + 1
@@ -126,9 +126,8 @@ Example : /home/test/rockyou.txt OR C:\\rockyou.txt
 
 #########################################################################################################################################################################
 
-"""
-
 # La partie qui permet d’afficher des résultats en ligne de commande.
+"""
 
 print("\n")
 print("--------------------------------------------------")
@@ -184,8 +183,8 @@ def zeroText():
     global labelDescription
     Text = """
 L’objectif de ce programme est d’analyser un fichier statique (rockyou.txt) contenant
-des mots de passe à raison d’un mot de passe par ligne, et produire des statistiques 
-sur l’usage des caractères (majuscules, minuscules, numériques, symboles), 
+des mots de passe à raison d’un mot de passe par ligne, et produire des statistiques
+sur l’usage des caractères (majuscules, minuscules, numériques, symboles),
 la longueur minimale, maximale et moyenne, la fréquence d’usage des lettres dans ce fichier.
     """
     labelDescription = tkinter.Label(mafenetre,text=Text,font=('Arial',28))
@@ -198,7 +197,7 @@ def one():
 def two():
     i = " Longest word : ", max(list_count_char), "character(s)"
     labelMessage12['text']= i
- 
+
 def three():
     i = " Average word length : ", round(count_total_char / count_total_lines), "character(s)"
     labelMessage13['text']= i
@@ -348,7 +347,7 @@ if __name__ == '__main__':
     # Affiche les statistiques sur les mots.
     boutonWord = tkinter.Button(mafenetre,text='Words',activeforeground="red",command=words)
     boutonWord.place(relx = 0.15, rely = 0.9, anchor = CENTER)
-    
+
     # Affiche les statistiques sur les caractères
     boutonCaracters = tkinter.Button(mafenetre,text='characters',activeforeground="red",command=Caracters)
     boutonCaracters.place(relx = 0.30, rely = 0.9, anchor = CENTER)
