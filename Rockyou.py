@@ -1,6 +1,7 @@
 
 #! /usr/bin/python3.8
 
+# Les différentes librairies utilisés.
 import re
 import os
 import string
@@ -27,10 +28,12 @@ from PIL import Image
 
 #########################################################################################################################################################################
 #
-# Algo Statistique
+# Algo qui effectue des calcules sur le fichier Rockyou.txt et permet d’obtenir les statistiques.  
 #
 
 def Algo_Statistique():
+
+    # Permet de rendre les variables lisibles par toutes les fonctions du script
     global count_total_lines
     global count_char
     global count_total_char
@@ -59,6 +62,7 @@ def Algo_Statistique():
     global symb_stat
     global other_stat
 
+    # Emplacement du script sur la machine et demande le chemin du fichier en ligne de commande.
     Path = input("""Rockyou.txt Path : 
 Example : /home/test/rockyou.txt OR C:\\rockyou.txt
 >>> """)
@@ -123,7 +127,8 @@ Example : /home/test/rockyou.txt OR C:\\rockyou.txt
 #########################################################################################################################################################################
 
 """
-# La partis affichage des resultat en ligne de commande
+
+# La partie qui permet d’afficher des résultats en ligne de commande.
 
 print("\n")
 print("--------------------------------------------------")
@@ -151,6 +156,7 @@ print("\n")
 
 """
 
+# Remplace les résultats déjà affichés par des espaces pour une meilleure lisibilité et exploitations des résultats.
 def blankText():
     labelMessage['text']=" "
     labelMessage11['text'] = " "
@@ -162,26 +168,26 @@ def blankText():
     labelMessage23['text'] = " "
     labelMessage24['text'] = " "
 
+# Supprime la page de garde pour mieux lire les résultats qui seront affichés quand nous allons appuyer sur les boutons.
 def Delete_Text():
     labelBonjour.pack_forget()
     labelDescription.pack_forget()
 
+# De la fonction ci-dessous « zeroTitre » a la fonctions ten() un peu plus bas. Cela sert à l'affichage des différentes statistiques généré avec l'algorithme.
 def zeroTitre():
     global labelBonjour
     Titre = """Sujet 3 : Analyse statistique d’un fichier"""
-    #labelBonjour['text'] = Titre
     labelBonjour = tkinter.Label(mafenetre,text=Titre,font=('Arial',48))
     labelBonjour.pack(ipady=10)
 
 def zeroText():
     global labelDescription
     Text = """
-L'objectif de ce programme est d'ouvrir un fichier texte (rockyou.txt) contenant
-des mots de passe à raison d’un mot de passe par ligne, et produire des statistiques sur
-l’usage des caractères (majuscules, minuscules, numériques, symboles), la longueur
-minimale, maximale et moyenne, la fréquence d’usage des lettres dans ce fichier.
+L’objectif de ce programme est d’analyser un fichier statique (rockyou.txt) contenant
+des mots de passe à raison d’un mot de passe par ligne, et produire des statistiques 
+sur l’usage des caractères (majuscules, minuscules, numériques, symboles), 
+la longueur minimale, maximale et moyenne, la fréquence d’usage des lettres dans ce fichier.
     """
-    #labelDescription['text'] = Text
     labelDescription = tkinter.Label(mafenetre,text=Text,font=('Arial',28))
     labelDescription.pack(ipady=10)
 
@@ -223,6 +229,7 @@ def nine():
     i = " Multiple character sets : ", str(round(other_stat, 2)), "%"
     labelMessage['text']= i
 
+# Voici les fonctions qui affichent la fréquence de chaque caractère dans le fichier Rockyou.txt.
 def ten():
     Delete_Text()
     blankText()
@@ -256,6 +263,7 @@ def ten():
     root3.title('Table of symbols')
     root3.mainloop
 
+# Voici la fonction « G1 » qui gère le graphique des caractères.
 def G1():
     #Upper = "Uppercase only:", str(round(upper_stat, 2)), "%"
     #Lower = "Lowercase only:", str(round(lower_stat, 2)), "%"
@@ -273,6 +281,7 @@ def G1():
     plt.axis('equal')
     plt.show()
 
+# La fonction « words » appelle les autres fonctions pour afficher la longueur max,min et moyenne d’un mot + le nombre de lignes. 
 def words():
     Delete_Text()
     blankText()
@@ -281,6 +290,7 @@ def words():
     three()
     four()
 
+# Voici la fonction « Caracters » qui permet d’appeler les fonctions qui affichent les statistiques sur les caractères.
 def Caracters():
     Delete_Text()
     blankText()
@@ -297,19 +307,20 @@ def quit():
 
 
 #
-# La fenetre
+# La partie du script qui se lance au démarrage.
 #
 if __name__ == '__main__':
+
+    # Voici la fonction « Algo_Statistique » qui permet d’afficher les statistiques. 
     Algo_Statistique()
-    #time.sleep(600)
+
     time.sleep(2)
-    mafenetre = tkinter.Tk()
-    mafenetre.title('Python Project')
-    mafenetre.geometry('1550x650')
-    #labelBonjour = tkinter.Label(mafenetre,font=('Arial',48))
-    #labelBonjour.pack(ipady=10)
-    #labelDescription = tkinter.Label(mafenetre,font=('Arial',28))
-    #labelDescription.pack(ipady=10)
+
+    mafenetre = tkinter.Tk()			# Le nom de la fenêtre
+    mafenetre.title('Python Project')	# Le titre de la fenêtre
+    mafenetre.geometry('1550x650')		# La taille de la fenêtre
+
+    # Les différents label qui contienne un message.
     labelMessage = tkinter.Label(mafenetre,font=('Ariel',42))
     labelMessage.place(x=100,y=100)
     labelMessage11 = tkinter.Label(mafenetre,font=('Ariel',42))
@@ -332,19 +343,30 @@ if __name__ == '__main__':
     zeroText()
 
 #
-# Les differents button qui donne des resultats
+# Les différents boutons qui permettent d’afficher les résultats.
 #
+    # Affiche les statistiques sur les mots.
     boutonWord = tkinter.Button(mafenetre,text='Words',activeforeground="red",command=words)
     boutonWord.place(relx = 0.15, rely = 0.9, anchor = CENTER)
+    
+    # Affiche les statistiques sur les caractères
     boutonCaracters = tkinter.Button(mafenetre,text='characters',activeforeground="red",command=Caracters)
     boutonCaracters.place(relx = 0.30, rely = 0.9, anchor = CENTER)
+
+    # Affiche les statistiques sur ce qui n’est pas une Majuscule ni Minuscule ni Numérique ni Symbole (caractères spéciaux).
     boutonNine = tkinter.Button(mafenetre,text='specific characters',activeforeground="red",command=nine)
     boutonNine.place(relx = 0.50, rely = 0.9, anchor = CENTER)
+
+    # Affiche la fréquence des caractères. 
     boutonTen = tkinter.Button(mafenetre,text='character frequency',activeforeground="red",command=ten)
     boutonTen.place(relx = 0.70, rely = 0.9, anchor = CENTER)
-    photo = Image.open("icon_poweroff.jpg")
+
+    # Affiche le bouton pour quitter une fenêtre.
+    #photo = Image.open("icon_poweroff.jpg")
     boutonQuit = tkinter.Button(mafenetre, text="Quit", activebackground="red", command=quit)
     boutonQuit.place(relx = 0.85, rely = 0.9, anchor = CENTER)
 
+
+    # La fenêtre d’accueil.
     mafenetre.mainloop()
 
